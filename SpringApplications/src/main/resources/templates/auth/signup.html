@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta charset="UTF-8">
+  <title th:text="#{signup}"></title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-menu ml-6">
+    <div class="navbar-start">
+      <div class="navbar-item has-dropdown is-hoverable">
+        <span class="navbar-link" th:text="#{language}"></span>
+
+        <div class="navbar-dropdown">
+          <a class="navbar-item" th:href="@{'?locale=en'}">
+            English
+          </a>
+          <a class="navbar-item" th:href="@{'?locale=ru'}">
+            Русский
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="container p-6">
+  <div class="columns is-centered">
+    <div class="column is-one-third box p-5">
+      <h3 th:text="#{signup}" class="heading"></h3>
+      <form method="POST" th:action="${action}" th:object="${user}" class="mb-2">
+        <div class="field">
+          <label class="label" for="username" th:text="#{username}"></label>
+          <div class="control">
+            <input th:field="*{username}" class="input" type="text" id="username">
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label" for="password" th:text="#{password}"></label>
+          <div class="control">
+            <input th:field="*{password}" class="input" type="password" id="password">
+          </div>
+        </div>
+
+        <button class="button is-primary is-fullwidth" th:text="#{signup}"></button>
+      </form>
+      <th:block th:if="${action == '/signup'}">
+        <a class="button is-fullwidth" href="/login" th:text="#{login}"></a>
+      </th:block>
+      <th:block th:if="${action == '/admin'}">
+        <a class="button is-fullwidth" href="/" th:text="#{back}"></a>
+      </th:block>
+    </div>
+  </div>
+</div>
+</body>
+</html>
